@@ -12,11 +12,16 @@
 </head>
 <body>
     <div id="app">
-        <h2>Elenco di 10 e-mail casuali</h2>
-        <button class="btn"></button>
-        <ul>
-            <li v-for="(email,i) in elencoMail" :key="i">{{ email }}</li>
-        </ul>
+        <div class="text-center py-3">
+            <h2 class="py-3">Elenco di e-mail casuali</h2>
+            <button class="btn btn-danger my-3 mx-3" @click="recoveryMail()">Crea Una e-mail</button>
+            <button class="btn btn-danger my-3 mx-3" @click="recoveryMultiMail()">Crea Dieci e-mail</button>
+            <ul>
+                <li class="list-unstyled py-3" v-for="(email,i) in elencoMail" :key="i">{{ email }}</li>
+            </ul>
+        </div>
+        
+        
     </div>
 
     <script src="js/script.js"></script>

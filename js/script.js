@@ -3,12 +3,14 @@ const { createApp } = Vue
 const app = createApp({
     data() {
         return {
-            elencoMail: []
+            elencoMail: [],
+            tempElencoMail: [],
+            counter: 0,
         }
     },
     methods: {
         recoveryMail() {
-            // effettuo una richiesta axios al server per ricevere un dato esterno 
+            // effettuo una richiesta Axios al server per ricevere un dato esterno 
             // e da un server esterno. Nello specifico ricevo una lista email.
             axios.get("https://flynn.boolean.careers/exercises/api/random/mail")
 
@@ -35,15 +37,32 @@ const app = createApp({
             // una arrow function quando scriviamo il ".then(function(reponse){}) in .then((response)=>{})"
             // per la risposta; avendo iol return automatico altrimenti non fuonzionerà mai perchè il this 
             // si riferirà sempre a window. 
-            this.elencoMail.push(response.data.response)
+            // ATTENZIONE - qui i dati vengono salvati in un array vuoto temporaneo
+            // per evitare di vederli stampati uno alla volta, per poi
+            // essere stampati tuti insieme una volta passati nell'array definitivo. 
+            this.elencoMail.push(response.data.response);
+
+            // this.tempElencoMailMail.push(response.data.response);
+
+            // qui passo i dati dall'array temporaneo a quello standard definitivo una volta finita 
+            // la verifica del numero delle mail come richieste nella funzione di dopo recoveryMultiMail
+            if (this.tempElencoMail.length === 10 ) {
+                this.elencoMail = tempElencoMail;
+            };
 
             });
         },
 
-    },
-    mounted(){
-    // qui devo invocate la funzione - recoveryMail per farla funzionare
-    this.recoveryMail()
+    recoveryMultiMail() {
+        this.counter = 10;
+
+        for (let i = 0; i < 10; i++) {
+            this.recoveryMail();
+            
+            this.counter--;
+        }
+    }
 
     },
+    
 }).mount('#app')
