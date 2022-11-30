@@ -15,7 +15,7 @@ const app = createApp({
             .then(function(response){
             // la risposta è contenuta nell'argomento della funzione che nello specifico chiamiamo - response.
 
-            // verifico il contenuto della isposta e verifico il funzionamento. 
+            // verifico il contenuto della risposta e verifico il corretto funzionamento del tutto. 
             console.log(response);
             });
         },
