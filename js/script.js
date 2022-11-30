@@ -3,7 +3,7 @@ const { createApp } = Vue
 const app = createApp({
     data() {
         return {
-            message: ''
+            elencoMail: []
         }
     },
     methods: {
@@ -14,7 +14,7 @@ const app = createApp({
 
             // questa funzione parte quando axios riceve la risposta dal server
             // la risposta è contenuta nell'argomento della funzione che nello specifico chiamiamo - response.
-            .then(function(response){
+            .then((response)=>{
             
             // verifico il contenuto della risposta e verifico il corretto funzionamento del tutto. 
             console.log(response);
@@ -28,12 +28,21 @@ const app = createApp({
             // il percorso (argomento.data.response)
             console.log( "il valore comunicato dal server è : "  + response.data.response );
 
+            // qui pusho il risultato del "response" di sopra, 
+            // dentro un array vuoto dove salvare i datati
+            // e precedentemente già creato nel data.
+            // --IMPORTANTISSIMO -- se vogliomo accedere a questo this. e riferilo a Vue dobbiamo usare
+            // una arrow function quando scriviamo il ".then(function(reponse){}) in .then((response)=>{})"
+            // per la risposta; avendo iol return automatico altrimenti non fuonzionerà mai perchè il this 
+            // si riferirà sempre a window. 
+            this.elencoMail.push(response.data.response)
+
             });
         },
 
     },
     mounted(){
-    // qui devo invocate la funzione - recoveriMail per farla funzionare
+    // qui devo invocate la funzione - recoveryMail per farla funzionare
     this.recoveryMail()
 
     },

@@ -14,6 +14,9 @@
     <div id="app">
         <h2>Elenco di 10 e-mail casuali</h2>
         <button class="btn"></button>
+        <ul>
+            <li v-for="(email,i) in elencoMail" :key="i">{{ email }}</li>
+        </ul>
     </div>
 
     <script src="js/script.js"></script>
