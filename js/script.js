@@ -40,14 +40,14 @@ const app = createApp({
             // ATTENZIONE - qui i dati vengono salvati in un array vuoto temporaneo
             // per evitare di vederli stampati uno alla volta, per poi
             // essere stampati tuti insieme una volta passati nell'array definitivo. 
-            this.elencoMail.push(response.data.response);
+            // this.elencoMail.push(response.data.response);
 
-            // this.tempElencoMailMail.push(response.data.response);
+            this.tempElencoMail.push(response.data.response);
 
             // qui passo i dati dall'array temporaneo a quello standard definitivo una volta finita 
             // la verifica del numero delle mail come richieste nella funzione di dopo recoveryMultiMail
             if (this.tempElencoMail.length === 10 ) {
-                this.elencoMail = tempElencoMail;
+                this.elencoMail = this.tempElencoMail;
             };
 
             });
